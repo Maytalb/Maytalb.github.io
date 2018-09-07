@@ -65,8 +65,11 @@ var DeleteDialog = /** @class */ (function () {
         this.dialogRef = dialogRef;
         this.data = data;
     }
+    DeleteDialog.prototype.onYesClick = function () {
+        this.dialogRef.close('ok');
+    };
     DeleteDialog.prototype.onNoClick = function () {
-        this.dialogRef.close('Cancel');
+        this.dialogRef.close('cancel');
     };
     DeleteDialog = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -91,7 +94,7 @@ var DeleteDialog = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"delete-dialog\">\r\n  <h1 mat-dialog-title>Delete</h1>\r\n  <div mat-dialog-content class=\"form-field\">\r\n    <p>Are you sure?</p>\r\n  </div>\r\n  <div mat-dialog-actions class=\"buttons\">\r\n    <button mat-button [mat-dialog-close]=\"\" cdkFocusInitial>Ok</button>\r\n    <button mat-button (click)=\"onNoClick()\">No Thanks</button>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"delete-dialog\">\r\n  <h1 mat-dialog-title>Delete</h1>\r\n  <div mat-dialog-content class=\"form-field\">\r\n    <p>Are you sure?</p>\r\n  </div>\r\n  <div mat-dialog-actions class=\"buttons\">\r\n    <button mat-button (click)=\"onYesClick()\" [mat-dialog-close]=\"\" cdkFocusInitial>Ok</button>\r\n    <button mat-button (click)=\"onNoClick()\">No Thanks</button>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -99,47 +102,39 @@ module.exports = "<div class=\"delete-dialog\">\r\n  <h1 mat-dialog-title>Delete
 /*!**********************************************!*\
   !*** ./src/app/Filters/capitalize.filter.ts ***!
   \**********************************************/
-/*! exports provided: Capitalize */
+/*! exports provided: CapitalizePipe */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Capitalize", function() { return Capitalize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CapitalizePipe", function() { return CapitalizePipe; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _book_name_transformer_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../book-name-transformer.service */ "./src/app/book-name-transformer.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 
-var Capitalize = /** @class */ (function () {
-    function Capitalize() {
+
+var CapitalizePipe = /** @class */ (function () {
+    function CapitalizePipe(service) {
+        this.service = service;
     }
-    Capitalize.prototype.transform = function (value) {
-        value = value.replace('  ', ' ');
-        if (value) {
-            var w_1 = '';
-            if (value.split(' ').length > 0) {
-                value.split(' ').forEach(function (word) {
-                    word = word.replace(/[^0-9a-z]/gi, '');
-                    w_1 += word.charAt(0).toUpperCase() + word.toString().substr(1, word.length).toLowerCase() + ' ';
-                });
-            }
-            else {
-                w_1 = value.charAt(0).toUpperCase() + value.toString().substr(1, value.length).toLowerCase();
-                w_1 = w_1.replace(/[^0-9a-z]/gi, '');
-            }
-            return w_1;
-        }
-        return value;
+    CapitalizePipe.prototype.transform = function (value) {
+        return this.service.fixText(value);
     };
-    Capitalize = __decorate([
+    CapitalizePipe = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Pipe"])({
             name: 'capitalize'
-        })
-    ], Capitalize);
-    return Capitalize;
+        }),
+        __metadata("design:paramtypes", [_book_name_transformer_service__WEBPACK_IMPORTED_MODULE_1__["BookNameTransformerService"]])
+    ], CapitalizePipe);
+    return CapitalizePipe;
 }());
 
 
@@ -177,7 +172,7 @@ var Book = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".mat-toolbar {\r\n  display: flex;\r\n}\r\n\r\n.fill-remaining-space {\r\n  flex: 1 1 auto;\r\n}\r\n\r\n.table-row:nth-child(2n + 1) {\r\n  background-color: rgba(0,0,0,.05);\r\n}\r\n\r\n.table-row button {\r\n  margin: 1px 5px;\r\n}\r\n\r\n.table-row button .fa {\r\n  height: 17.5px;\r\n}\r\n\r\n.flex-grid {\r\n  display: flex !important;\r\n}\r\n\r\n.col-1 {\r\n  width: 8.33333%;\r\n  vertical-align: middle;\r\n  line-height: 36px;\r\n}\r\n\r\n.col-2 {\r\n  width: 16.66666%;\r\n  vertical-align: middle;\r\n  line-height: 36px;\r\n}\r\n\r\n.col-3 {\r\n  width: 25%;\r\n  vertical-align: middle;\r\n  line-height: 36px;\r\n}\r\n\r\n.col-4 {\r\n  width: 33.33333%;\r\n  vertical-align: middle;\r\n  line-height: 36px;\r\n}\r\n\r\n.col-5 {\r\n  width: 41.66666%;\r\n  vertical-align: middle;\r\n  line-height: 36px;\r\n}\r\n\r\n.col-6 {\r\n  width: 50%;\r\n  vertical-align: middle;\r\n  line-height: 36px;\r\n}\r\n\r\n.mat-list-text {\r\n  text-align: center;\r\n}\r\n\r\n.table-row {\r\n  display: flex;\r\n  display: -webkit-flex;\r\n  flex-direction: row;\r\n  flex-grow: 0;\r\n  -webkit-flex-grow: 0;\r\n  flex-wrap: wrap;\r\n  -webkit-flex-wrap: wrap;\r\n  padding-left: 15px;\r\n  padding-right: 15px;\r\n}\r\n\r\n.text {\r\n  word-break: break-all;\r\n  width: 20%;\r\n}\r\n\r\nbody {\r\n  font-size: 20px;\r\n}\r\n\r\n.table-row.header {\r\n  background-color: #ffeedb;\r\n  font-weight: bold;\r\n  padding-top: 8px;\r\n  padding-bottom: 8px;\r\n}"
+module.exports = ".mat-toolbar {\r\n  display: flex;\r\n}\r\n\r\n.fill-remaining-space {\r\n  flex: 1 1 auto;\r\n}\r\n\r\n.table-row:nth-child(2n + 1) {\r\n  background-color: rgba(0,0,0,.05);\r\n}\r\n\r\n.table-row button {\r\n  margin: 1px 5px;\r\n}\r\n\r\n.table-row button .fa {\r\n  height: 17.5px;\r\n}\r\n\r\n.flex-grid {\r\n  display: flex !important;\r\n}\r\n\r\n.col-1 {\r\n  width: 8.33333%;\r\n  vertical-align: middle;\r\n  line-height: 36px;\r\n}\r\n\r\n.col-2 {\r\n  width: 16.66666%;\r\n  vertical-align: middle;\r\n  line-height: 36px;\r\n}\r\n\r\n.col-3 {\r\n  width: 25%;\r\n  vertical-align: middle;\r\n  line-height: 36px;\r\n}\r\n\r\n.col-4 {\r\n  width: 33.33333%;\r\n  vertical-align: middle;\r\n  line-height: 36px;\r\n}\r\n\r\n.col-5 {\r\n  width: 41.66666%;\r\n  vertical-align: middle;\r\n  line-height: 36px;\r\n}\r\n\r\n.col-6 {\r\n  width: 50%;\r\n  vertical-align: middle;\r\n  line-height: 36px;\r\n}\r\n\r\n.mat-list-text {\r\n  text-align: center;\r\n}\r\n\r\n.table-row {\r\n  display: flex;\r\n  display: -webkit-flex;\r\n  flex-direction: row;\r\n  flex-grow: 0;\r\n  -webkit-flex-grow: 0;\r\n  flex-wrap: wrap;\r\n  -webkit-flex-wrap: wrap;\r\n  padding-left: 15px;\r\n  padding-right: 15px;\r\n}\r\n\r\n.text {\r\n  word-break: break-all;\r\n  width: 20%;\r\n}\r\n\r\nbody {\r\n  font-size: 20px;\r\n}\r\n\r\n.table-row.header {\r\n  background-color: #ffeedb;\r\n  font-weight: bold;\r\n  padding-top: 8px;\r\n  padding-bottom: 8px;\r\n}\r\n\r\n@media (max-width: 767px) {\r\n  .hidden-xs {\r\n    display: none !important;\r\n  }\r\n}"
 
 /***/ }),
 
@@ -188,7 +183,7 @@ module.exports = ".mat-toolbar {\r\n  display: flex;\r\n}\r\n\r\n.fill-remaining
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <mat-progress-bar *ngIf=\"loading\" color=\"warn\" mode=\"indeterminate\"></mat-progress-bar>\n  <mat-toolbar color=\"primary\">\n    <span>My Libray</span>\n    <span class=\"fill-remaining-space\"></span>\n    <button mat-raised-button (click)=\"openDialog()\"><i class=\"fa fa-plus\"></i> Add book</button>\n  </mat-toolbar>\n</div>\n\n<div class=\"container-fluid\" style=\"margin-top: 10px\">\n  <div class=\"table-row header\">\n    <div class=\"text\">Book ID</div>\n    <div class=\"text\">Book Title</div>\n    <div class=\"text\">Author</div>\n    <div class=\"text\">Published Date</div>\n    <div class=\"text\"></div>\n  </div>\n\n  <div class=\"table-row\" *ngFor=\"let book of books\">\n    <div class=\"text\">{{book._id}}</div>\n    <div class=\"text\">{{book.BookTitle | capitalize}}</div>\n    <div class=\"text\" title=\"vasan@example.com\">{{book.AuthorName}}</div>\n    <div class=\"text\">{{book.PublishedDate}}</div>\n    <div class=\"text\">\n      <button mat-flat-button (click)=\"openDialog(book)\"><i class=\"fa fa-pencil fa-fw\"></i> Edit</button>\n      <button mat-flat-button color=\"accent\" (click)=\"openDeleteDialog(book._id)\"><i class=\"fa fa-trash fa-fw\"></i> Delete</button>\n    </div>\n  </div>   \n</div>"
+module.exports = "<div>\n  <mat-progress-bar *ngIf=\"loading\" color=\"warn\" mode=\"indeterminate\"></mat-progress-bar>\n  <mat-toolbar color=\"primary\">\n    <span>My Libray</span>\n    <span class=\"fill-remaining-space\"></span>\n    <button mat-raised-button (click)=\"openDialog()\"><i class=\"fa fa-plus\"></i> Add new book</button>\n  </mat-toolbar>\n</div>\n\n<div class=\"container-fluid\" style=\"margin-top: 10px\">\n  <div class=\"table-row header\">\n    <div class=\"text\">Book ID</div>\n    <div class=\"text\">Book Title</div>\n    <div class=\"text\">Author</div>\n    <div class=\"text\">Published Date</div>\n    <div class=\"text\"></div>\n  </div>\n\n  <div class=\"table-row\" *ngFor=\"let book of books\">\n    <div class=\"text\">{{book._id}}</div>\n    <div class=\"text\">{{book.BookTitle | capitalize}}</div>\n    <div class=\"text\">{{book.AuthorName}}</div>\n    <div class=\"text\">{{book.PublishedDate}}</div>\n    <div class=\"text\">\n      <button mat-flat-button (click)=\"openDialog(book)\"><i class=\"fa fa-pencil fa-fw\"></i> <span class=\"hidden-xs\">Edit</span></button>\n      <button mat-flat-button color=\"accent\" (click)=\"openDeleteDialog(book._id)\"><i class=\"fa fa-trash fa-fw\"></i> <span class=\"hidden-xs\">Delete</span></button>\n    </div>\n  </div>   \n</div>"
 
 /***/ }),
 
@@ -210,6 +205,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(uuid__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _Models_Book__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Models/Book */ "./src/app/Models/Book.ts");
 /* harmony import */ var _Dialogs_delete_dialog_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Dialogs/delete-dialog.component */ "./src/app/Dialogs/delete-dialog.component.ts");
+/* harmony import */ var _book_name_transformer_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./book-name-transformer.service */ "./src/app/book-name-transformer.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -227,11 +223,13 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var AppComponent = /** @class */ (function () {
-    function AppComponent(dialog, snackBar, service) {
+    function AppComponent(dialog, snackBar, service, bookNameTransformer) {
         this.dialog = dialog;
         this.snackBar = snackBar;
         this.service = service;
+        this.bookNameTransformer = bookNameTransformer;
         this.loading = false;
     }
     AppComponent.prototype.ngOnInit = function () {
@@ -241,8 +239,10 @@ var AppComponent = /** @class */ (function () {
         this.service.getBooks().subscribe(function (data) {
             var allBooksData = data.items;
             allBooksData.forEach(function (book) {
-                var newBook = new _Models_Book__WEBPACK_IMPORTED_MODULE_5__["Book"](book.id, book.volumeInfo.authors[0], book.volumeInfo.title, book.volumeInfo.publishedDate);
-                _this.books.push(newBook);
+                if (book.volumeInfo.publishedDate.length > 4) {
+                    var newBook = new _Models_Book__WEBPACK_IMPORTED_MODULE_5__["Book"](book.id, book.volumeInfo.authors[0], book.volumeInfo.title, book.volumeInfo.publishedDate);
+                    _this.books.push(newBook);
+                }
             });
         }, function (error) { return console.log(error); }, function () { return _this.loading = false; });
     };
@@ -262,7 +262,7 @@ var AppComponent = /** @class */ (function () {
             disableClose: false
         });
         dialogRef.afterClosed().subscribe(function (result) {
-            if (result !== 'Cancel') {
+            if (result && result === 'ok') {
                 _this.remove(_this.selectedId);
             }
             else {
@@ -281,34 +281,38 @@ var AppComponent = /** @class */ (function () {
             disableClose: false
         });
         dialogRef.afterClosed().subscribe(function (result) {
-            if (result !== 'Cancel') {
-                var errors = '';
-                _this.loading = true;
-                errors = _this.checkFields(result);
-                if (errors == '') {
-                    var res = _this.books.findIndex(function (x) {
-                        return x.BookTitle.toLowerCase() == result.bookTitle.toLowerCase() && x._id !== result._id;
-                    });
-                    if (res >= 0) {
-                        _this.openSnackBar('Error: book already exists');
-                    }
-                    else {
-                        if (result._id == '') {
-                            var newBook = new _Models_Book__WEBPACK_IMPORTED_MODULE_5__["Book"](Object(uuid__WEBPACK_IMPORTED_MODULE_4__["v4"])(), result.authorName, result.bookTitle, result.publishedDate);
-                            _this.books.push(newBook);
+            if (result) {
+                if (result !== 'Cancel') {
+                    var errors = '';
+                    _this.loading = true;
+                    errors = _this.checkFields(result);
+                    if (errors == '') {
+                        var resultBookTitle_1 = _this.bookNameTransformer.fixText(result.bookTitle);
+                        var res = _this.books.findIndex(function (x) {
+                            var tableBookTitle = _this.bookNameTransformer.fixText(x.BookTitle);
+                            return tableBookTitle == resultBookTitle_1 && x._id !== result._id;
+                        });
+                        if (res >= 0) {
+                            _this.openSnackBar('Error: book already exists');
                         }
                         else {
-                            var idToUpdate = _this.books.findIndex(function (book) { return book._id == result._id; });
-                            _this.books[idToUpdate].BookTitle = result.bookTitle;
-                            _this.books[idToUpdate].AuthorName = result.authorName;
-                            _this.books[idToUpdate].PublishedDate = result.publishedDate;
+                            if (result._id == '') {
+                                var newBook = new _Models_Book__WEBPACK_IMPORTED_MODULE_5__["Book"](Object(uuid__WEBPACK_IMPORTED_MODULE_4__["v4"])(), result.authorName, result.bookTitle, result.publishedDate);
+                                _this.books.push(newBook);
+                            }
+                            else {
+                                var idToUpdate = _this.books.findIndex(function (book) { return book._id == result._id; });
+                                _this.books[idToUpdate].BookTitle = result.bookTitle;
+                                _this.books[idToUpdate].AuthorName = result.authorName;
+                                _this.books[idToUpdate].PublishedDate = result.publishedDate;
+                            }
                         }
                     }
+                    else {
+                        _this.openSnackBar(errors);
+                    }
+                    _this.loading = false;
                 }
-                else {
-                    _this.openSnackBar(errors);
-                }
-                _this.loading = false;
             }
         });
     };
@@ -334,22 +338,6 @@ var AppComponent = /** @class */ (function () {
     AppComponent.prototype.isEmpty = function (value) {
         return value == '';
     };
-    AppComponent.prototype.isDate = function (input) {
-        var status = false;
-        if (!input || input.length <= 0) {
-            status = false;
-        }
-        else {
-            try {
-                var result = new Date(input);
-                status = true;
-            }
-            catch (ex) {
-                status = false;
-            }
-        }
-        return status;
-    };
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-root',
@@ -358,7 +346,8 @@ var AppComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"],
             _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSnackBar"],
-            _books_service__WEBPACK_IMPORTED_MODULE_3__["BooksService"]])
+            _books_service__WEBPACK_IMPORTED_MODULE_3__["BooksService"],
+            _book_name_transformer_service__WEBPACK_IMPORTED_MODULE_7__["BookNameTransformerService"]])
     ], AppComponent);
     return AppComponent;
 }());
@@ -415,7 +404,7 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"],
                 _new_book_new_book_component__WEBPACK_IMPORTED_MODULE_6__["NewBookComponent"],
-                _Filters_capitalize_filter__WEBPACK_IMPORTED_MODULE_5__["Capitalize"],
+                _Filters_capitalize_filter__WEBPACK_IMPORTED_MODULE_5__["CapitalizePipe"],
                 _Dialogs_delete_dialog_component__WEBPACK_IMPORTED_MODULE_7__["DeleteDialog"]
             ],
             imports: [
@@ -468,6 +457,61 @@ var AppModule = /** @class */ (function () {
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/book-name-transformer.service.ts":
+/*!**************************************************!*\
+  !*** ./src/app/book-name-transformer.service.ts ***!
+  \**************************************************/
+/*! exports provided: BookNameTransformerService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BookNameTransformerService", function() { return BookNameTransformerService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var BookNameTransformerService = /** @class */ (function () {
+    function BookNameTransformerService() {
+    }
+    BookNameTransformerService.prototype.fixText = function (value) {
+        value = value.replace('  ', ' ');
+        if (value) {
+            var w_1 = '';
+            if (value.split(' ').length > 0) {
+                value.split(' ').forEach(function (word) {
+                    word = word.replace(/[^0-9a-z]/gi, '');
+                    w_1 += word.charAt(0).toUpperCase() + word.toString().substr(1, word.length).toLowerCase() + ' ';
+                });
+            }
+            else {
+                w_1 = value.charAt(0).toUpperCase() + value.toString().substr(1, value.length).toLowerCase();
+                w_1 = w_1.replace(/[^0-9a-z]/gi, '');
+            }
+            return w_1;
+        }
+        return value;
+    };
+    BookNameTransformerService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [])
+    ], BookNameTransformerService);
+    return BookNameTransformerService;
 }());
 
 
@@ -528,8 +572,8 @@ var BooksService = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
     urls: {
-        getAll: "https://www.googleapis.com/books/v1/volumes?q=harry&poter&filter=free-ebooks&startIndex=0&maxResults=10"
-        }
+        getAll: "https://www.googleapis.com/books/v1/volumes?q=harry&potter&startIndex=0&maxResults=10"
+    }
 });
 
 /***/ }),
@@ -541,7 +585,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".new-book-dialog {\r\n  font-size: 30px;\r\n}\r\n\r\n.new-book-dialog .form-field {\r\n  width: 400px;\r\n  padding: 5px 0;\r\n}\r\n\r\n.new-book-dialog .buttons {\r\n  flex-direction: row-reverse;\r\n}\r\n\r\n.new-book-dialog .form-field-error {\r\n  font-size: 12px;\r\n}"
+module.exports = ".new-book-dialog {\r\n  font-size: 20px;\r\n}\r\n\r\n.new-book-dialog .form-field {\r\n  width: 400px;\r\n  padding: 5px 0;\r\n}\r\n\r\n.new-book-dialog .buttons {\r\n  flex-direction: row-reverse;\r\n}\r\n\r\n.new-book-dialog .form-field-error {\r\n  font-size: 12px;\r\n}"
 
 /***/ }),
 
