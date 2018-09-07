@@ -629,9 +629,7 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 var NewBookComponent = /** @class */ (function () {
-    function NewBookComponent(
-    //private fb: FormBuilder,
-    dialogRef, data) {
+    function NewBookComponent(dialogRef, data) {
         this.dialogRef = dialogRef;
         this.data = data;
         this.book = data;
