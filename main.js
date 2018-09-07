@@ -177,7 +177,7 @@ var Book = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".mat-toolbar {\r\n  display: flex;\r\n}\r\n\r\n.fill-remaining-space {\r\n  flex: 1 1 auto;\r\n}\r\n\r\n.table-row:nth-child(2n + 1) {\r\n  background-color: rgba(0,0,0,.05);\r\n}\r\n\r\n.table-row button {\r\n  margin: 1px 5px;\r\n}\r\n\r\n.table-row button .fa {\r\n  height: 17.5px;\r\n}\r\n\r\n.flex-grid {\r\n  display: flex !important;\r\n}\r\n\r\n.col-1 {\r\n  width: 8.33333%;\r\n  vertical-align: middle;\r\n  line-height: 36px;\r\n}\r\n\r\n.col-2 {\r\n  width: 16.66666%;\r\n  vertical-align: middle;\r\n  line-height: 36px;\r\n}\r\n\r\n.col-3 {\r\n  width: 25%;\r\n  vertical-align: middle;\r\n  line-height: 36px;\r\n}\r\n\r\n.col-4 {\r\n  width: 33.33333%;\r\n  vertical-align: middle;\r\n  line-height: 36px;\r\n}\r\n\r\n.col-5 {\r\n  width: 41.66666%;\r\n  vertical-align: middle;\r\n  line-height: 36px;\r\n}\r\n\r\n.col-6 {\r\n  width: 50%;\r\n  vertical-align: middle;\r\n  line-height: 36px;\r\n}\r\n\r\n.mat-list-text {\r\n  text-align: center;\r\n}\r\n\r\n.table-row {\r\n  display: flex;\r\n  display: -webkit-flex;\r\n  flex-direction: row;\r\n  flex-grow: 0;\r\n  -webkit-flex-grow: 0;\r\n  flex-wrap: wrap;\r\n  -webkit-flex-wrap: wrap;\r\n  padding-left: 15px;\r\n  padding-right: 15px;\r\n}\r\n\r\n.text {\r\n  word-break: break-all;\r\n  width: 20%;\r\n}\r\n\r\nbody {\r\n  font-size: 20px;\r\n}\r\n\r\n.table-row.header {\r\n  background-color: #FFEEDB;\r\n  font-weight: bold;\r\n  padding-top: 8px;\r\n  padding-bottom: 8px;\r\n}"
+module.exports = ".mat-toolbar {\r\n  display: flex;\r\n}\r\n\r\n.fill-remaining-space {\r\n  flex: 1 1 auto;\r\n}\r\n\r\n.table-row:nth-child(2n + 1) {\r\n  background-color: rgba(0,0,0,.05);\r\n}\r\n\r\n.table-row button {\r\n  margin: 1px 5px;\r\n}\r\n\r\n.table-row button .fa {\r\n  height: 17.5px;\r\n}\r\n\r\n.flex-grid {\r\n  display: flex !important;\r\n}\r\n\r\n.col-1 {\r\n  width: 8.33333%;\r\n  vertical-align: middle;\r\n  line-height: 36px;\r\n}\r\n\r\n.col-2 {\r\n  width: 16.66666%;\r\n  vertical-align: middle;\r\n  line-height: 36px;\r\n}\r\n\r\n.col-3 {\r\n  width: 25%;\r\n  vertical-align: middle;\r\n  line-height: 36px;\r\n}\r\n\r\n.col-4 {\r\n  width: 33.33333%;\r\n  vertical-align: middle;\r\n  line-height: 36px;\r\n}\r\n\r\n.col-5 {\r\n  width: 41.66666%;\r\n  vertical-align: middle;\r\n  line-height: 36px;\r\n}\r\n\r\n.col-6 {\r\n  width: 50%;\r\n  vertical-align: middle;\r\n  line-height: 36px;\r\n}\r\n\r\n.mat-list-text {\r\n  text-align: center;\r\n}\r\n\r\n.table-row {\r\n  display: flex;\r\n  display: -webkit-flex;\r\n  flex-direction: row;\r\n  flex-grow: 0;\r\n  -webkit-flex-grow: 0;\r\n  flex-wrap: wrap;\r\n  -webkit-flex-wrap: wrap;\r\n  padding-left: 15px;\r\n  padding-right: 15px;\r\n}\r\n\r\n.text {\r\n  word-break: break-all;\r\n  width: 20%;\r\n}\r\n\r\nbody {\r\n  font-size: 20px;\r\n}\r\n\r\n.table-row.header {\r\n  background-color: #ffeedb;\r\n  font-weight: bold;\r\n  padding-top: 8px;\r\n  padding-bottom: 8px;\r\n}"
 
 /***/ }),
 
@@ -258,7 +258,8 @@ var AppComponent = /** @class */ (function () {
         this.selectedId = id;
         var dialogRef = this.dialog.open(_Dialogs_delete_dialog_component__WEBPACK_IMPORTED_MODULE_6__["DeleteDialog"], {
             width: '500px',
-            data: id
+            data: id,
+            disableClose: false
         });
         dialogRef.afterClosed().subscribe(function (result) {
             if (result !== 'Cancel') {
@@ -276,7 +277,8 @@ var AppComponent = /** @class */ (function () {
         }
         var dialogRef = this.dialog.open(_new_book_new_book_component__WEBPACK_IMPORTED_MODULE_1__["NewBookComponent"], {
             width: '500px',
-            data: product
+            data: product,
+            disableClose: false
         });
         dialogRef.afterClosed().subscribe(function (result) {
             if (result !== 'Cancel') {
@@ -539,7 +541,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".new-book-dialog {\r\n  font-size: 30px;\r\n}\r\n\r\n.new-book-dialog .form-field {\r\n  width: 450px;\r\n  padding: 10px 0;\r\n}\r\n\r\n.new-book-dialog .buttons {\r\n  flex-direction: row-reverse;\r\n}"
+module.exports = ".new-book-dialog {\r\n  font-size: 30px;\r\n}\r\n\r\n.new-book-dialog .form-field {\r\n  width: 400px;\r\n  padding: 5px 0;\r\n}\r\n\r\n.new-book-dialog .buttons {\r\n  flex-direction: row-reverse;\r\n}\r\n\r\n.new-book-dialog .form-field-error {\r\n  font-size: 12px;\r\n}"
 
 /***/ }),
 
@@ -550,7 +552,7 @@ module.exports = ".new-book-dialog {\r\n  font-size: 30px;\r\n}\r\n\r\n.new-book
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"new-book-dialog\">\n  <mat-dialog-content [formGroup]=\"form\">\n    <mat-form-field class=\"form-field\">\n      <input type=\"text\" matInput required placeholder=\"Title\" formControlName=\"bookTitle\" />\n      <mat-error *ngIf=\"bookTitle.invalid && (bookTitle.dirty || bookTitle.touched)\">\n        Book title is required\n      </mat-error>\n    </mat-form-field>\n    <mat-form-field class=\"form-field\">\n      <input type=\"text\" matInput required placeholder=\"Author\" formControlName=\"authorName\">\n      <mat-error *ngIf=\"authorName.invalid && (authorName.dirty || authorName.touched)\" class=\"alert alert-danger\">\n        Author name is required\n      </mat-error>\n    </mat-form-field>\n    <mat-form-field class=\"form-field\">\n      <input type=\"date\" matInput required placeholder=\"Published Date\" formControlName=\"publishedDate\">\n      <mat-error *ngIf=\"publishedDate.invalid && (publishedDate.dirty || publishedDate.touched)\" class=\"alert alert-danger\">\n        Published date is required\n      </mat-error>\n    </mat-form-field>\n  </mat-dialog-content>\n  <mat-dialog-actions class=\"buttons\">\n    <button mat-button (click)=\"save()\" [disabled]=\"!form.valid\">Save</button>\n    <button mat-button (click)=\"onNoClick()\">Cancel</button>\n  </mat-dialog-actions>\n</div>"
+module.exports = "<div class=\"new-book-dialog\">\n  <mat-dialog-content [formGroup]=\"form\">\n    <mat-form-field class=\"form-field\">\n      <input type=\"text\" matInput required placeholder=\"Title\" formControlName=\"bookTitle\" />\n      <mat-error class=\"form-field-error\" *ngIf=\"bookTitle.invalid && (bookTitle.dirty || bookTitle.touched)\">\n        Book title is required\n      </mat-error>\n    </mat-form-field>\n    <mat-form-field class=\"form-field\">\n      <input type=\"text\" matInput required placeholder=\"Author\" formControlName=\"authorName\">\n      <mat-error class=\"form-field-error\" *ngIf=\"authorName.invalid && (authorName.dirty || authorName.touched)\" class=\"alert alert-danger\">\n        Author name is required\n      </mat-error>\n    </mat-form-field>\n    <mat-form-field class=\"form-field\">\n      <input type=\"date\" matInput required placeholder=\"Published Date\" formControlName=\"publishedDate\">\n      <mat-error class=\"form-field-error\" *ngIf=\"publishedDate.invalid && (publishedDate.dirty || publishedDate.touched)\" class=\"alert alert-danger\">\n        Published date is required\n      </mat-error>\n    </mat-form-field>\n  </mat-dialog-content>\n  <mat-dialog-actions class=\"buttons\">\n    <button mat-button (click)=\"save()\" [disabled]=\"!form.valid\">Save</button>\n    <button mat-button (click)=\"onNoClick()\">Cancel</button>\n  </mat-dialog-actions>\n</div>"
 
 /***/ }),
 
